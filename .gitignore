@@ -3,6 +3,8 @@ node_modules
 dist
 .npmrc
 .cache
+.vscode
+.husky
 
 tests/server/static
 tests/server/static/upload
