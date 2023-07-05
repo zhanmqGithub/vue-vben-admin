@@ -45,7 +45,14 @@
     </ARow>
 
     <FormItem class="enter-x">
-      <Button type="primary" style="background-color: #1d4dac; border: none" size="large" block @click="handleLogin" :loading="loading">
+      <Button
+        type="primary"
+        style="background-color: #1d4dac; border: none"
+        size="large"
+        block
+        @click="handleLogin"
+        :loading="loading"
+      >
         {{ t('sys.login.loginButton') }}
       </Button>
     </FormItem>

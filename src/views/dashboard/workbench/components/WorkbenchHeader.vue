@@ -3,7 +3,7 @@
     <Avatar :src="userinfo.avatar || headerImg" :size="72" class="!mx-auto !block" />
     <div class="md:ml-6 flex flex-col justify-center md:mt-0 mt-2">
       <h1 class="md:text-lg text-md">早安, {{ userinfo.realName }}, 开始您一天的工作吧！</h1>
-      <span class="text-secondary"> 今日晴，20℃ - 32℃！ </span>
+      <span class="text-secondary"> {{ weatherTips }} </span>
     </div>
     <div class="flex flex-1 justify-end md:mt-0 mt-4">
       <div class="flex flex-col justify-center text-right">
@@ -23,11 +23,36 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { computed } from 'vue';
+  import { reactive, computed } from 'vue';
   import { Avatar } from 'ant-design-vue';
   import { useUserStore } from '/@/store/modules/user';
   import headerImg from '/@/assets/images/header.jpg';
 
+  interface weather {
+    condition: string;
+    minT: string;
+    maxT: string;
+  }
   const userStore = useUserStore();
   const userinfo = computed(() => userStore.getUserInfo);
+  const weather: weather = reactive({
+    condition: '晴',
+    minT: '18℃',
+    maxT: '24℃',
+  });
+  const weatherTips = computed(
+    () => `今日${weather.condition}，${weather.minT} - ${weather.maxT}！`,
+  );
+  setTimeout(() => {
+    const res = {
+      result: {
+        condition: '多云',
+        minT: '20℃',
+        maxT: '32℃',
+      },
+    };
+    for (const key of Object.keys(weather)) {
+      weather[key] = res.result[key];
+    }
+  }, 1000);
 </script>

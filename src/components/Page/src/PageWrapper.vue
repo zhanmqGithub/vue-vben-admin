@@ -69,12 +69,10 @@
       const contentRef = ref(null);
       const footerRef = ref(null);
       const { prefixCls } = useDesign('page-wrapper');
-
       provide(
         PageWrapperFixedHeightKey,
         computed(() => props.fixedHeight),
       );
-
       const getIsContentFullHeight = computed(() => {
         return props.contentFullHeight;
       });

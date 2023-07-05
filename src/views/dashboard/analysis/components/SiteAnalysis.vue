@@ -3,12 +3,12 @@
     :tab-list="tabListTitle"
     v-bind="$attrs"
     :active-tab-key="activeKey"
-    @tabChange="onTabChange"
+    @tab-change="onTabChange"
   >
-    <p v-if="activeKey === 'tab1'">
+    <p v-if="activeKey === '01'">
       <VisitAnalysis />
     </p>
-    <p v-if="activeKey === 'tab2'">
+    <p v-if="activeKey === '02'">
       <VisitAnalysisBar />
     </p>
   </Card>
@@ -18,21 +18,14 @@
   import { Card } from 'ant-design-vue';
   import VisitAnalysis from './VisitAnalysis.vue';
   import VisitAnalysisBar from './VisitAnalysisBar.vue';
+  import { tabListTitle } from '/@/views/dashboard/analysis/data';
+  const activeKey = ref('01');
 
-  const activeKey = ref('tab1');
-
-  const tabListTitle = [
-    {
-      key: 'tab1',
-      tab: '流量趋势',
-    },
-    {
-      key: 'tab2',
-      tab: '访问量',
-    },
-  ];
-
-  function onTabChange(key) {
+  /**
+   * tab页切换事件
+   * @param key 目的tab的key
+   */
+  function onTabChange(key: string) {
     activeKey.value = key;
   }
 </script>
